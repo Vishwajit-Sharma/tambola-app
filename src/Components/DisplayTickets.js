@@ -4,14 +4,50 @@ import TambolaContext from '../Context/TambolaContext'
 const DisplayTickets = () => {
 
     const {ticketCount} = useContext(TambolaContext)
-    const [grids, setGrids] = useState([]);
+    const [totalGrids, setTotalGrids] = useState([]);
     
     useEffect(() => {
-        // const randomGrids = generateRandomGrids(ticketCount);
-        // setGrids(randomGrids);
-        generateGrids()
+        const totalGrids = []
+        for(let i=0; i<ticketCount; i++){
+            const grid = generateSingleGrid()
+            totalGrids.push(grid)
+        }
+        setTotalGrids(totalGrids)
+       
       }, [ticketCount]);
    
+      const generateSingleGrid = () => {
+        let grid = []
+        const distinctNumbers = new Set();
+
+        while(distinctNumbers.size < 15){
+            const randomNumber = Math.floor(Math.random() * 90) + 1;
+            distinctNumbers.add(randomNumber);
+        }
+        const distinctNubersArray = Array.from(distinctNumbers)
+      
+        let index = 0
+        for(let i=0; i<3; i++){
+            let rows = [] 
+            const distinctColumns = new Set();
+            while(distinctColumns.size < 9){
+                const randomColumn = Math.floor(Math.random() * 5);
+                distinctColumns.add(randomColumn);
+            }
+            const distinctColumnArray = Array.from(distinctColumns)
+            for(let j=0; j<9; j++){
+                if(distinctColumnArray.includes(j)){
+                    rows.push(distinctNubersArray[index])
+                    index++
+                }
+                else {
+                    rows.push(null)
+                }           
+            }
+            grid.push(rows)
+        }
+        return grid
+      }
 
     // const generateRandomNumbers = () => {
     //     const numbers = [];
@@ -55,47 +91,47 @@ const DisplayTickets = () => {
     //     return grids;
     //   };
       
-    const generateSingleGrid = () => {
-        let grid = []
-        const distinctNumbers = new Set();
+    // const generateSingleGrid = () => {
+    //     let grid = []
+    //     const distinctNumbers = new Set();
 
-        while(distinctNumbers.size < 15){
-            const randomNumber = Math.floor(Math.random() * 90) + 1;
-            distinctNumbers.add(randomNumber);
-        }
-        const distinctNubersArray = Array.from(distinctNumbers)
+    //     while(distinctNumbers.size < 15){
+    //         const randomNumber = Math.floor(Math.random() * 90) + 1;
+    //         distinctNumbers.add(randomNumber);
+    //     }
+    //     const distinctNubersArray = Array.from(distinctNumbers)
       
-        let index = 0
-        for(let i=0; i<3; i++){
-            let rows = [] 
-            const distinctColumns = new Set();
-            while(distinctColumns.size < 9){
-                const randomColumn = Math.floor(Math.random() * 5);
-                distinctColumns.add(randomColumn);
-            }
-            const distinctColumnArray = Array.from(distinctColumns)
-            for(let j=0; j<9; j++){
-                if(distinctColumnArray.includes(j)){
-                    rows.push(distinctNubersArray[index])
-                    index++
-                }
-                else {
-                    rows.push(null)
-                }           
-            }
-            grid.push(rows)
-        }
+    //     let index = 0
+    //     for(let i=0; i<3; i++){
+    //         let rows = [] 
+    //         const distinctColumns = new Set();
+    //         while(distinctColumns.size < 9){
+    //             const randomColumn = Math.floor(Math.random() * 5);
+    //             distinctColumns.add(randomColumn);
+    //         }
+    //         const distinctColumnArray = Array.from(distinctColumns)
+    //         for(let j=0; j<9; j++){
+    //             if(distinctColumnArray.includes(j)){
+    //                 rows.push(distinctNubersArray[index])
+    //                 index++
+    //             }
+    //             else {
+    //                 rows.push(null)
+    //             }           
+    //         }
+    //         grid.push(rows)
+    //     }
 
-        return (
-            <React.Fragment>
-               { grid.map(row => <div className='eachRow'>
-                    {
-                        row.map(col => <div className='eachColumn'>{col}</div>)
-                    }
-                </div>)}
-            </React.Fragment>
-        )
-    }
+    //     return (
+    //         <React.Fragment>
+    //            { grid.map(row => <div className='eachRow'>
+    //                 {
+    //                     row.map(col => <div className='eachColumn'>{col}</div>)
+    //                 }
+    //             </div>)}
+    //         </React.Fragment>
+    //     )
+    // }
 
     const generateTicketGrids = () => {
         for (let i=0; i< ticketCount; i++){
@@ -105,31 +141,23 @@ const DisplayTickets = () => {
         }
     }
  
-    const generateGrids = () => {
-        return (
-            <div className='displayTicketsContainer'>
-                 {/* {Array.from({ length: 20 }, (_, index) => (
-                <React.Fragment key={index}>
-                  {yourFunctionReturningJSX()}
-                </React.Fragment>
-              ))} */}
-        
-              {generateTicketGrids()}
-            </div>
-          )
-    }
-
-//   return (
-//     <div className='displayTicketsContainer'>
-//          {/* {Array.from({ length: 20 }, (_, index) => (
-//         <React.Fragment key={index}>
-//           {yourFunctionReturningJSX()}
-//         </React.Fragment>
-//       ))} */}
-
-//       {generateTicketGrids()}
-//     </div>
-//   )
+ 
+  return (
+    <div className='displayTicketsContainer'>
+        {
+            totalGrids.map(grid => <div className='singleGrid'>
+            { grid.map(row => <div className='eachRow'>
+                {
+                    row.map(col => <div className='eachColumn'>{col}</div>)
+                }
+                <br/>
+            </div>)}
+        </div> )
+        }
+            
+      
+    </div>
+  )
 }
 
 export default DisplayTickets
