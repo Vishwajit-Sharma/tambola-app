@@ -6,6 +6,7 @@ const DisplayTickets = () => {
     const {ticketCount} = useContext(TambolaContext)
     const [totalGrids, setTotalGrids] = useState([]);
     
+
     useEffect(() => {
         const totalGrids = []
         for(let i=0; i<ticketCount; i++){
@@ -53,7 +54,7 @@ const DisplayTickets = () => {
   return (
     <div>
         <h2>Tickets</h2>
-        <div className='displayTicketsContainer'>
+        <div className='display-tickets-container'>
         {
             totalGrids.map(grid => <div className='singleGrid'>
             { grid.map(row => <div className='eachRow'>
