@@ -30,132 +30,41 @@ const DisplayTickets = () => {
         for(let i=0; i<3; i++){
             let rows = [] 
             const distinctColumns = new Set();
-            while(distinctColumns.size < 9){
-                const randomColumn = Math.floor(Math.random() * 5);
+            while(distinctColumns.size < 5){
+                const randomColumn = Math.floor(Math.random() * 9);
                 distinctColumns.add(randomColumn);
             }
             const distinctColumnArray = Array.from(distinctColumns)
             for(let j=0; j<9; j++){
                 if(distinctColumnArray.includes(j)){
-                    rows.push(distinctNubersArray[index])
+                    rows.push(distinctNubersArray[index] <= 9 ? "0"+distinctNubersArray[index] : distinctNubersArray[index])
                     index++
                 }
                 else {
-                    rows.push(null)
+                    rows.push("00")
                 }           
             }
             grid.push(rows)
         }
         return grid
       }
-
-    // const generateRandomNumbers = () => {
-    //     const numbers = [];
-    //     for (let i = 1; i <= 90; i++) {
-    //       numbers.push(i);
-    //     }
-    //     return numbers.sort(() => Math.random() - 0.5);
-    //   };
-      
-    //   const generateGrid = () => {
-    //     const grid = [];
-    //     for (let i = 0; i < 9; i++) {
-    //       const row = [];
-    //       for (let j = 0; j < 3; j++) {
-    //         row.push({ value: null });
-    //       }
-    //       grid.push(row);
-    //     }
-    //     return grid;
-    //   };
-      
-    //   const generateRandomFilledGrid = () => {
-    //     const randomNumbers = generateRandomNumbers();
-    //     const grid = generateGrid();
-      
-    //     for (let i = 0; i < 5; i++) {
-    //       const row = Math.floor(Math.random() * 9);
-    //       const col = Math.floor(Math.random() * 3);
-    //       const num = randomNumbers[i];
-    //       grid[row][col] = { value: num };
-    //     }
-      
-    //     return grid;
-    //   };
-      
-    //   const generateRandomGrids = (count) => {
-    //     const grids = [];
-    //     for (let i = 0; i < count; i++) {
-    //       grids.push(generateRandomFilledGrid());
-    //     }
-    //     return grids;
-    //   };
-      
-    // const generateSingleGrid = () => {
-    //     let grid = []
-    //     const distinctNumbers = new Set();
-
-    //     while(distinctNumbers.size < 15){
-    //         const randomNumber = Math.floor(Math.random() * 90) + 1;
-    //         distinctNumbers.add(randomNumber);
-    //     }
-    //     const distinctNubersArray = Array.from(distinctNumbers)
-      
-    //     let index = 0
-    //     for(let i=0; i<3; i++){
-    //         let rows = [] 
-    //         const distinctColumns = new Set();
-    //         while(distinctColumns.size < 9){
-    //             const randomColumn = Math.floor(Math.random() * 5);
-    //             distinctColumns.add(randomColumn);
-    //         }
-    //         const distinctColumnArray = Array.from(distinctColumns)
-    //         for(let j=0; j<9; j++){
-    //             if(distinctColumnArray.includes(j)){
-    //                 rows.push(distinctNubersArray[index])
-    //                 index++
-    //             }
-    //             else {
-    //                 rows.push(null)
-    //             }           
-    //         }
-    //         grid.push(rows)
-    //     }
-
-    //     return (
-    //         <React.Fragment>
-    //            { grid.map(row => <div className='eachRow'>
-    //                 {
-    //                     row.map(col => <div className='eachColumn'>{col}</div>)
-    //                 }
-    //             </div>)}
-    //         </React.Fragment>
-    //     )
-    // }
-
-    const generateTicketGrids = () => {
-        for (let i=0; i< ticketCount; i++){
-            return (
-                <div className='singleGrid'>{generateSingleGrid()}</div>
-            )
-        }
-    }
  
  
   return (
-    <div className='displayTicketsContainer'>
+    <div>
+        <h2>Tickets</h2>
+        <div className='displayTicketsContainer'>
         {
             totalGrids.map(grid => <div className='singleGrid'>
             { grid.map(row => <div className='eachRow'>
                 {
-                    row.map(col => <div className='eachColumn'>{col}</div>)
+                    row.map(col => <div className='eachColumn'><span style={col === "00" ? {visibility:"hidden"} : col === 11 ? {visibility:"visible", paddingRight: "1px"} : {visibility:"visible"}}>{col}</span></div>)
                 }
                 <br/>
             </div>)}
         </div> )
         }
-            
-      
+        </div>
     </div>
   )
 }

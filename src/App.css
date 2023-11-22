@@ -8,8 +8,8 @@
   padding: 7px;
 }
 .displayTicketsContainer{
-  border: 1px solid gray;
-  padding: 20px;
+  /* border: 1px solid gray; */
+  padding: 0 20px;
   display: grid;
   place-items: center;
   grid-gap: 30px;
@@ -18,13 +18,52 @@
 
 .eachRow{
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
 }
 .eachColumn{
-  padding: 15px;
+  padding: 10px;
   border: 1px solid black;
   display: grid;
   place-self: center;
 
+}
+.show-called-numbers{
+  display: flex;
+  padding: 20px;
+}
+
+.tambola-board {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 4px;
+  margin-top: 20px;
+}
+
+.board-number {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.board-number.called {
+  background-color: yellow;
+}
+
+.board-number.current {
+  background-color: lightgreen;
+}
+
+.ticket-number {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.called-number {
+  margin-right: 5px;
+  background-color: yellow;
+  padding: 5px;
+  border-radius: 3px;
 }
