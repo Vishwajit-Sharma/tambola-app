@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 align="center">Tambola Game</h1>
+      <h1 align="center" style={{textDecoration: "underline", marginBottom: "40px"}}>Tambola Game</h1>
       <TambolaProvider>
         <InputTicketCount/>
         <GameControl/>

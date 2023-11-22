@@ -34,12 +34,9 @@ const GameControl = () => {
             <button onClick={handleNewGameButton}>New Game</button>
         </div>
          <div className="show-called-numbers">
-            <h2>Called Numbers : &nbsp;</h2>
-            {calledNumbers.map((number, index) => (
-                <h2 key={index} >
-                    {number} &nbsp;&nbsp;
-                </h2>
-            ))}
+            <h2>Called Numbers : &nbsp; 
+                {calledNumbers.map(number=> <span key={number}>{number} &nbsp;&nbsp;</span>)} 
+            </h2>
         </div>
         </>
        

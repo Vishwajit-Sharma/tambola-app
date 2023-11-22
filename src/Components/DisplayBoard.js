@@ -11,11 +11,10 @@ const DisplayBoard = () => {
         for(let i = 1; i<=90; i++){
             numbers.push(i)
         }
-        
-
+  
         return (
             <>
-            {numbers.map((number, index) => (
+            {numbers.map(number => (
                 <div
                   key={number}
                   className={`board-number ${
@@ -31,10 +30,10 @@ const DisplayBoard = () => {
       };
 
     return (
-        <div>
+        <>
             <h2 align="center">Board Numbers</h2>
             <div className="tambola-board">{renderBoardNumbers()}</div>
-        </div>
+        </>
     )
 }
 export default DisplayBoard

@@ -8,12 +8,12 @@ const DisplayTickets = () => {
     
 
     useEffect(() => {
-        const totalGrids = []
+        const grids = []
         for(let i=0; i<ticketCount; i++){
             const grid = generateSingleGrid()
-            totalGrids.push(grid)
+            grids.push(grid)
         }
-        setTotalGrids(totalGrids)
+        setTotalGrids(grids)
        
       }, [ticketCount]);
    
@@ -52,21 +52,23 @@ const DisplayTickets = () => {
  
  
   return (
-    <div>
-        <h2>Tickets</h2>
+    <>
+        <h2 align="center" style={{marginTop: "40px"}}>Tickets</h2>
         <div className='display-tickets-container'>
         {
-            totalGrids.map(grid => <div className='singleGrid'>
-            { grid.map(row => <div className='eachRow'>
+            totalGrids.map((grid, index) => <div className='singleGrid' key={index}>
+            { grid.map((row, ind) => <div className='eachRow' key={ind}>
                 {
-                    row.map(col => <div className='eachColumn'><span style={col === "00" ? {visibility:"hidden"} : col === 11 ? {visibility:"visible", paddingRight: "1px"} : {visibility:"visible"}}>{col}</span></div>)
+                    row.map((col,i) => <div className='eachColumn' key={i}>
+                        <span style={col === "00" ? {visibility:"hidden"} : col === 11 ? {visibility:"visible", paddingRight: "1px"} : {visibility:"visible"}}>{col}
+                        </span> </div>)
                 }
-                <br/>
+                
             </div>)}
         </div> )
         }
         </div>
-    </div>
+    </>
   )
 }
 
