@@ -1,13 +1,13 @@
-.inputTicket{
+.input-ticket{
   margin: 20px 30%
 }
-.inputTicket input {
+.input-ticket input {
   padding: 7px;
 }
-.inputTicket button {
+.input-ticket button {
   padding: 7px;
 }
-.displayTicketsContainer{
+.display-tickets-container{
   /* border: 1px solid gray; */
   padding: 0 20px;
   display: grid;
@@ -25,6 +25,13 @@
   display: grid;
   place-self: center;
 
+}
+.game-controller{
+  display: flex;
+  justify-content: space-around;
+}
+.game-controller button {
+  padding: 7px;
 }
 .show-called-numbers{
   display: flex;
@@ -59,11 +66,4 @@
   padding: 10px;
   text-align: center;
   background-color: #fff;
-}
-
-.called-number {
-  margin-right: 5px;
-  background-color: yellow;
-  padding: 5px;
-  border-radius: 3px;
 }
